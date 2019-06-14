@@ -3,6 +3,10 @@ uuid = "813a1eaa-8dee-11e9-3098-59346359e612"
 authors = ["Rafael Schouten <rafaelschouten@gmail.com>"]
 version = "0.1.0"
 
+[deps]
+CoordinateReferenceSystemsBase = "68eda718-8dee-11e9-39e7-89f7f65f511f"
+GDAL = "add2ef01-049f-52c4-9ee2-e494f65e021a"
+
 [compat]
 julia = "1"
 
