@@ -59,11 +59,19 @@ Base.convert(::Type{Proj4string}, input::EPSGcode) = begin
 end
 
 # convert to String
-Base.convert(::Type{String}, input::WellKnownText) = input.data
+Base.convert(::Type{String}, input::WellKnownText) = 
 Base.convert(::Type{String}, input::Proj4string) = input.data
 Base.convert(::Type{String}, input::EPSGcode) = string(EPSG_PREFIX, input.data)
 
 # convert to Int
 Base.convert(::Type{Int}, input::EPSGcode) = input.data
+
+# convert from String
+Base.convert(::Type{WellKnownText}, input::AbstractString) = WellKnownText(input)
+Base.convert(::Type{Proj4string}, input::AbstractString) = Proj4string(input)
+Base.convert(::Type{EPSGcode}, input::AbstractString) = EPSGcode(input)
+
+# convert from Int
+Base.convert(::Type{EPSGcode}, input::Int) = EPSGcode(input)
 
 end # module
