@@ -22,7 +22,7 @@ Base.convert(::Type{WellKnownText}, input::Proj4string) = begin
     srs, ptr = refs()
     GDAL.importfromproj4(srs, input.data)
     GDAL.exporttowkt(srs, ptr)
-    return WellKnownText(unsafe_string(wkt_ptr[]))
+    return WellKnownText(unsafe_string(ptr[]))
 end
 
 "Reformat WKT"
@@ -59,7 +59,7 @@ Base.convert(::Type{Proj4string}, input::EPSGcode) = begin
 end
 
 # convert to String
-Base.convert(::Type{String}, input::WellKnownText) = 
+Base.convert(::Type{String}, input::WellKnownText) = input.data 
 Base.convert(::Type{String}, input::Proj4string) = input.data
 Base.convert(::Type{String}, input::EPSGcode) = string(EPSG_PREFIX, input.data)
 
